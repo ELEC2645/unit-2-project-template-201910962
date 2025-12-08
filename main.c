@@ -8,21 +8,20 @@
 #include <math.h>
 #include "funcs.h"
 
-/* Prototypes mirroring the C++ version */
-static void main_menu(void);            /* runs in the main loop */
-static void print_main_menu(void);      /* output the main menu description */
-static int  get_user_input(void);       /* get a valid integer menu choice */
-static void select_menu_item(int input);/* run code based on user's choice */
-static void go_back_to_main(void);      /* wait for 'b'/'B' to continue */
-static int  is_integer(const char *s);  /* validate integer string */
+// Prototypes mirroring the C++ version 
+static void main_menu(void);            //runs in the main loop 
+static void print_main_menu(void);      //output the main menu description 
+static int  get_user_input(void);       // get a valid integer menu choice 
+static void select_menu_item(int input);// run code based on user's choice 
+static void go_back_to_main(void);      // wait for 'b'or'B' to continue 
+static int  is_integer(const char *s);  // validate integer string 
 
 int main(void)
 {
-    /* this will run forever until we call exit(0) in select_menu_item() */
+    // this will run forever until we call exit(0) in select_menu_item() 
     for(;;) {
         main_menu();
     }
-    /* not reached */
     return 0;
 }
 
@@ -37,7 +36,7 @@ static void main_menu(void)
 
 static int get_user_input(void)
 {
-    enum { MENU_ITEMS = 5 };   /* 1..4 = items, 5 = Exit */
+    enum { MENU_ITEMS = 5 };  
     char buf[128];
     int valid_input = 0;
     int value = 0;
@@ -45,7 +44,6 @@ static int get_user_input(void)
     do {
         printf("\nSelect item: ");
         if (!fgets(buf, sizeof(buf), stdin)) {
-            /* EOF or error; bail out gracefully */
             puts("\nInput error. Exiting.");
             exit(1);
         }
@@ -97,7 +95,7 @@ static void select_menu_item(int input)
 
 static void print_main_menu(void)
 {
-    printf("\n----------- Main menu -----------\n");
+    printf("\n Main menu \n");
     printf("\n"
            "\t\t\t\t\t\t\n"
            "\t1. Menu item 1\t\t\n"
@@ -122,15 +120,15 @@ static void go_back_to_main(void)
     } while (!(buf[0] == 'b' || buf[0] == 'B') || buf[1] != '\0');
 }
 
-/* Return 1 if s is an optional [+/-] followed by one-or-more digits, else 0. */
+// Return 1 if s is an optional [+/-] followed by one-or-more digits, else 0. 
 static int is_integer(const char *s)
 {
-    if (!s || !*s) return 0;
+if (!s || !*s) return 0;
 
     /* optional sign */
     if (*s == '+' || *s == '-') s++;
 
-    /* must have at least one digit */
+    // must have at least one digit 
     if (!isdigit((unsigned char)*s)) return 0;
 
     while (*s) {

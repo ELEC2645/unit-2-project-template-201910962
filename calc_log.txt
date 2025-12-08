@@ -1,0 +1,1 @@
+[Color→Resistance] (2,1,m=11,t=7) = 0.21 ohm, tol ±10%
